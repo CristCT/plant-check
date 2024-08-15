@@ -5,13 +5,28 @@ const App = () => {
   const [image, setImage] = useState(null);
   const [result, setResult] = useState(null);
 
-  const handleImageUpload = (event) => {
+  const handleImageUpload = async (event) => {
     const file = event.target.files[0];
     if (file) {
       setImage(URL.createObjectURL(file));
-      setTimeout(() => {
-        setResult('La hoja es saludable');
-      }, 1000);
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      try {
+        const response = await fetch('http://127.0.0.1:5000/predict', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const data = await response.json();
+        setResult(
+          `Resultado: ${data.result} (Confianza: ${(data.confidence * 100).toFixed(2)}%)`
+        );
+      } catch (error) {
+        console.error('Error al predecir:', error);
+        setResult('Error en el análisis');
+      }
     }
   };
 
