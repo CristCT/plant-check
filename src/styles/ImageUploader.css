@@ -1,0 +1,12 @@
+.hide-texts-DnD span {
+    display: none;
+}
+
+.hide-texts-DnD::after {
+    content: "Arrastra y suelta una imagen aquí";
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    color: #7e7e7e;
+    margin-bottom: 8px;
+}

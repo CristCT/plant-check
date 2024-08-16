@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { FileUploader } from 'evergreen-ui';
+import './../styles/ImageUploader.css';
 
 const ImageUploader = ({ onUpload }) => (
   <FileUploader
@@ -8,6 +9,7 @@ const ImageUploader = ({ onUpload }) => (
     onChange={onUpload}
     maxFiles={1}
     accept="image/*"
+    className="hide-texts-DnD"
   />
 );
 
