@@ -5,7 +5,7 @@ const ImageAnalyzer = ({ onAnalyze, disabled }) => (
   <Button
     appearance="primary"
     intent="success"
-    width="100%"
+    width="300px"
     marginBottom={16}
     onClick={onAnalyze}
     disabled={disabled}
