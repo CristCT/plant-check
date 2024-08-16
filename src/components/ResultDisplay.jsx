@@ -25,9 +25,14 @@ const ResultDisplay = ({ loading, result, confidence, image }) => {
       flexDirection="column"
       alignItems="center"
       justifyContent="center"
-      marginTop={16}
       textAlign="center"
     >
+      <Checkbox
+        label="Mostrar confianza"
+        checked={showConfidence}
+        onChange={(e) => setShowConfidence(e.target.checked)}
+      />
+
       {image && (
         <Pane>
           <Heading size={500} marginBottom={16}>
@@ -70,12 +75,6 @@ const ResultDisplay = ({ loading, result, confidence, image }) => {
           </Pane>
         </Pane>
       )}
-      <Checkbox
-        label="Mostrar confianza"
-        checked={showConfidence}
-        onChange={(e) => setShowConfidence(e.target.checked)}
-        marginTop={16}
-      />
     </Pane>
   );
 };
