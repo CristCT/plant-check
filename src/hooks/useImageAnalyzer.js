@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import config from '../config';
 
 export const useImageAnalyzer = () => {
   const [image, setImage] = useState(null);
@@ -30,7 +31,7 @@ export const useImageAnalyzer = () => {
     formData.append('output_type', outputType);
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/predict', {
+      const response = await fetch(`${config.API_BASE_URL}/predict`, {
         method: 'POST',
         body: formData,
       });
