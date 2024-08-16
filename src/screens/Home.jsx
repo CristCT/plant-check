@@ -33,6 +33,7 @@ const Home = () => {
       textAlign="center"
       background="tint1"
       marginTop={40}
+      marginBottom={40}
     >
       <Heading size={800} marginBottom={16}>
         <Icon icon="leaf" color="success" marginRight={8} />
