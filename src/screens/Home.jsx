@@ -21,7 +21,7 @@ const Home = () => {
 
   return (
     <Pane
-      width={600}
+      width={500}
       display="flex"
       flexDirection="column"
       alignItems="center"
