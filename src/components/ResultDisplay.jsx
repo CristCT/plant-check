@@ -1,63 +1,70 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { Typography, CircularProgress, Box, Button } from '@mui/material';
+import {
+  Pane,
+  Heading,
+  Text,
+  Spinner,
+  Button,
+  Image,
+  Icon,
+} from 'evergreen-ui';
 
 const ResultDisplay = ({ loading, result, confidence, image }) => {
   const [showConfidence, setShowConfidence] = useState(false);
 
   return (
-    <Box
+    <Pane
       display="flex"
       flexDirection="column"
       alignItems="center"
       justifyContent="center"
-      style={{ marginTop: '16px', textAlign: 'center' }}
+      marginTop={16}
+      textAlign="center"
     >
       {image && (
-        <div>
-          <Typography variant="h6" gutterBottom>
+        <Pane>
+          <Heading size={500} marginBottom={16}>
+            <Icon icon="media" color="info" marginRight={8} />
             Imagen seleccionada:
-          </Typography>
-          <img
+          </Heading>
+          <Image
             src={image}
             alt="Hoja de Manzana"
-            style={{ maxWidth: '300px', borderRadius: '4px' }}
+            maxWidth={300}
+            borderRadius={4}
           />
-        </div>
+        </Pane>
       )}
 
       {loading && (
-        <Box
-          display="flex"
-          justifyContent="center"
-          style={{ marginTop: '16px' }}
-        >
-          <CircularProgress />
-        </Box>
+        <Pane display="flex" justifyContent="center" marginTop={16}>
+          <Spinner />
+        </Pane>
       )}
 
       {!loading && result && (
-        <div>
-          <Typography variant="h6" gutterBottom style={{ marginTop: '16px' }}>
+        <Pane>
+          <Heading size={500} marginTop={16} marginBottom={16}>
             Resultado del análisis:
-          </Typography>
-          <Typography variant="body1">{result}</Typography>
+          </Heading>
+          <Text>{result}</Text>
           <Button
-            variant="contained"
-            color="secondary"
-            style={{ marginTop: '16px' }}
+            appearance="primary"
+            intent="none"
+            marginTop={16}
             onClick={() => setShowConfidence(!showConfidence)}
           >
             {showConfidence ? 'Ocultar Confianza' : 'Mostrar Confianza'}
           </Button>
           {showConfidence && (
-            <Typography variant="body2" style={{ marginTop: '8px' }}>
+            <Text marginTop={8}>
               Confianza: {(confidence * 100).toFixed(2)}%
-            </Typography>
+            </Text>
           )}
-        </div>
+        </Pane>
       )}
-    </Box>
+    </Pane>
   );
 };
 

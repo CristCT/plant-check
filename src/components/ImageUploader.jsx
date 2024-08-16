@@ -1,16 +1,14 @@
 import PropTypes from 'prop-types';
-import { Button } from '@mui/material';
+import { FileUploader } from 'evergreen-ui';
 
 const ImageUploader = ({ onUpload }) => (
-  <Button
-    variant="contained"
-    component="label"
-    fullWidth
-    style={{ marginBottom: '16px' }}
-  >
-    Subir Imagen
-    <input type="file" accept="image/*" hidden onChange={onUpload} />
-  </Button>
+  <FileUploader
+    label="Subir Imagen"
+    description="Arrastra una imagen aquí o haz clic para seleccionar una"
+    onChange={onUpload}
+    maxFiles={1}
+    accept="image/*"
+  />
 );
 
 ImageUploader.propTypes = {

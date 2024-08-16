@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import { Button } from '@mui/material';
+import { Button } from 'evergreen-ui';
 
 const ImageAnalyzer = ({ onAnalyze, disabled }) => (
   <Button
-    variant="contained"
-    color="primary"
-    fullWidth
-    style={{ marginBottom: '16px' }}
+    appearance="primary"
+    intent="success"
+    width="100%"
+    marginBottom={16}
     onClick={onAnalyze}
     disabled={disabled}
   >

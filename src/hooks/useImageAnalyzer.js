@@ -8,8 +8,15 @@ export const useImageAnalyzer = () => {
   const [confidence, setConfidence] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
+  const handleImageUpload = (eventOrFiles) => {
+    let file;
+
+    if (eventOrFiles.target && eventOrFiles.target.files) {
+      file = eventOrFiles.target.files[0];
+    } else if (eventOrFiles && eventOrFiles.length > 0) {
+      file = eventOrFiles[0];
+    }
+
     if (file) {
       setImage(URL.createObjectURL(file));
       setImageFile(file);
