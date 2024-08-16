@@ -21,15 +21,20 @@ const Home = () => {
 
   return (
     <Pane
+      width={600}
       display="flex"
       flexDirection="column"
       alignItems="center"
       justifyContent="center"
-      height="100vh"
+      margin="auto"
+      border="default"
+      borderRadius={8}
       padding={20}
       textAlign="center"
+      background="tint1"
+      marginTop={40}
     >
-      <Heading size={600} marginBottom={16}>
+      <Heading size={800} marginBottom={16}>
         <Icon icon="leaf" color="success" marginRight={8} />
         Analizador de Hojas de Manzana
       </Heading>
