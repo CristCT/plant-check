@@ -15,6 +15,8 @@ Este es el frontend para la aplicación **Plant Check**, una herramienta que per
 │   ├── components/                 # Componentes principales de la UI
 │   ├── hooks/                      # Custom hooks
 │   │   └── useImageAnalyzer.js     # Lógica del análisis de imagen
+│   ├── screens/                    # Vistas de la aplicación
+│   ├── styles/                     # Estilos globales y de componentes de la aplicación
 │   ├── App.jsx                     # Componente raíz de la aplicación
 │   ├── App.css                     # Estilos globales de la aplicación
 │   ├── config.js                   # Configuraciones y constantes globales
