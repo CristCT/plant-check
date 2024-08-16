@@ -5,13 +5,19 @@ import {
   Heading,
   Text,
   Spinner,
-  Button,
   Image,
   Icon,
+  Checkbox,
 } from 'evergreen-ui';
 
 const ResultDisplay = ({ loading, result, confidence, image }) => {
   const [showConfidence, setShowConfidence] = useState(false);
+
+  const getConfidenceColor = (confidence) => {
+    if (confidence >= 0.8) return 'green';
+    if (confidence >= 0.5) return 'yellow';
+    return 'red';
+  };
 
   return (
     <Pane
@@ -48,22 +54,28 @@ const ResultDisplay = ({ loading, result, confidence, image }) => {
           <Heading size={500} marginTop={16} marginBottom={16}>
             Resultado del análisis:
           </Heading>
-          <Text>{result}</Text>
-          <Button
-            appearance="primary"
-            intent="none"
-            marginTop={16}
-            onClick={() => setShowConfidence(!showConfidence)}
+
+          <Pane
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
           >
-            {showConfidence ? 'Ocultar Confianza' : 'Mostrar Confianza'}
-          </Button>
-          {showConfidence && (
-            <Text marginTop={8}>
-              Confianza: {(confidence * 100).toFixed(2)}%
-            </Text>
-          )}
+            <Text>{result}</Text>
+            {showConfidence && (
+              <Text marginTop={8} color={getConfidenceColor(confidence)}>
+                Confianza: {(confidence * 100).toFixed(2)}%
+              </Text>
+            )}
+          </Pane>
         </Pane>
       )}
+      <Checkbox
+        label="Mostrar confianza"
+        checked={showConfidence}
+        onChange={(e) => setShowConfidence(e.target.checked)}
+        marginTop={16}
+      />
     </Pane>
   );
 };
