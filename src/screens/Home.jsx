@@ -37,7 +37,7 @@ const Home = () => {
     >
       <Heading size={800} marginBottom={16}>
         <Icon icon="leaf" color="success" marginRight={8} />
-        Analizador de Hojas de Manzana
+        Analizador de Plantas
       </Heading>
 
       <OptionList
