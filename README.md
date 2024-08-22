@@ -12,10 +12,13 @@ Este es el frontend para la aplicación **Plant Check**, una herramienta que per
 ```plaintext
 ├── src/
 │   ├── assets/                     # Recursos estáticos como imágenes y estilos globales
-│   ├── components/                 # Componentes principales de la UI
+│   ├── components/                 # Componentes comunes y principales de la UI
 │   ├── hooks/                      # Custom hooks
 │   │   └── useImageAnalyzer.js     # Lógica del análisis de imagen
+│   │   └── useFileAnalyzer.js      # Lógica del análisis por lotes de imágenes
 │   ├── screens/                    # Vistas de la aplicación
+│   ├── api/                        # Funciones para interactuar con el backend
+│   ├── utils/                      # Utilidades y funciones auxiliares
 │   ├── styles/                     # Estilos globales y de componentes de la aplicación
 │   ├── App.jsx                     # Componente raíz de la aplicación
 │   ├── App.css                     # Estilos globales de la aplicación
