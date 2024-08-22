@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { FileUploader } from 'evergreen-ui';
-import './../styles/ImageUploader.css';
+import './../../styles/ImageUploader.css';
 
 const ImageUploader = ({ onUpload }) => (
   <FileUploader
