@@ -1,7 +1,6 @@
 import React from 'react';
 import { Dialog, Paragraph } from 'evergreen-ui';
 import { LinearProgress, Box } from '@mui/material';
-// import { ProgressBar } from 'primereact/progressbar';
 import PropTypes from 'prop-types';
 
 const ImageProcessingDialog = ({
