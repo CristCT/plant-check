@@ -1,32 +1,35 @@
 import { useState } from 'react';
 import { postDataProcessing } from '../Api/MonitoringApi';
+import { toast } from 'react-toastify';
 
-export const useFileAnalyzer = () => {
-  const [result, setResult] = useState(null);
-  const [confidence, setConfidence] = useState(null);
+const useFileAnalyzer = () => {
+  const [outputType] = useState('saludable');
   const [loading, setLoading] = useState(false);
 
   const analyzeImage = async (imageFile) => {
     if (!imageFile) {
-      alert('Por favor, sube una imagen primero.');
+      toast.error('Por favor, sube una imagen primero.');
       return false;
     }
 
     setLoading(true);
-    setResult(null);
-    setConfidence(null);
 
     const formData = new FormData();
     formData.append('file', imageFile);
+    formData.append('output_type', outputType);
 
     try {
       const data = await postDataProcessing(formData);
-      setResult(data.result);
-      setConfidence(data.confidence);
-      return true;
+      if (data && data.result !== undefined) {
+        return data;
+      } else {
+        throw new Error(
+          'La respuesta del servidor no contiene un resultado válido'
+        );
+      }
     } catch (error) {
       console.error('Error al predecir:', error);
-      setResult('Error en el análisis');
+      toast.error('Error al predecir');
       return false;
     } finally {
       setLoading(false);
@@ -35,8 +38,8 @@ export const useFileAnalyzer = () => {
 
   return {
     analyzeImage,
-    result,
-    confidence,
     loading,
   };
 };
+
+export default useFileAnalyzer;

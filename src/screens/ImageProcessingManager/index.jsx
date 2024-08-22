@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Pane } from 'evergreen-ui';
 import { toast } from 'react-toastify';
-import { useFileAnalyzer } from '../../hooks/useFileAnalyzer';
-import { useSaveResults } from '../../hooks/monitoring/useSaveResults';
+import useFileAnalyzer from '../../hooks/useFileAnalyzer';
+import useSaveResults from '../../hooks/monitoring/useSaveResults';
 import {
   HeaderBar,
   StepperNavigation,
@@ -16,10 +16,11 @@ import UploaderSection from './components/UploaderSection';
 const ImageProcessingManager = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [images, setImages] = useState([]);
+  const [analysisResults, setAnalysisResults] = useState([]);
   const [imagePreviews, setImagePreviews] = useState([]);
   const [progress, setProgress] = useState(0);
   const [isDialogShown, setIsDialogShown] = useState(false);
-  const { analyzeImage, result, confidence } = useFileAnalyzer();
+  const { analyzeImage } = useFileAnalyzer();
   const { saveResultsData, loading, error } = useSaveResults();
 
   const steps = ['Subir Imágenes', 'Analizar Imágenes', 'Guardar Resultados'];
@@ -50,18 +51,23 @@ const ImageProcessingManager = () => {
     let analysisResults = [];
 
     for (let i = 0; i < totalImages; i++) {
-      const success = await analyzeImage(images[i]);
-      if (success) {
-        analysisResults.push({
-          idcamara: 1,
-          resultado_modelo: result,
-          planta: `Planta ${i + 1}`,
-          healthy: confidence >= 0.5 ? 'Yes' : 'No',
-          time: new Date().toISOString(),
-          fecha_registro: new Date().toISOString(),
-          valido: true,
-        });
-      } else {
+      try {
+        const analysisResult = await analyzeImage(images[i]);
+        if (analysisResult) {
+          analysisResults.push({
+            idcamara: 1,
+            resultado_modelo: analysisResult.result,
+            planta: `Planta ${i + 1}`,
+            healthy: analysisResult.confidence >= 0.5 ? 'Yes' : 'No',
+            time: new Date().toISOString(),
+            fecha_registro: new Date().toISOString(),
+            valido: true,
+          });
+        } else {
+          throw new Error('No se pudo obtener el resultado del análisis');
+        }
+      } catch (error) {
+        console.error(`Error al analizar la imagen ${i + 1}:`, error);
         allSuccess = false;
         break;
       }
@@ -73,8 +79,7 @@ const ImageProcessingManager = () => {
     if (allSuccess) {
       toast.success('Todas las imágenes fueron analizadas exitosamente.');
       setCurrentStep(2);
-
-      await saveResults(analysisResults);
+      setAnalysisResults(analysisResults);
     } else {
       toast.error(
         'Error al analizar las imágenes. Revisa los archivos e intenta de nuevo.'
@@ -96,7 +101,7 @@ const ImageProcessingManager = () => {
 
   const saveResults = async (data) => {
     await saveResultsData(data);
-    if (!loading && !error) {
+    if (error === null) {
       setCurrentStep(3);
     }
   };
@@ -124,8 +129,10 @@ const ImageProcessingManager = () => {
         return (
           <SaveResultsStep
             saveResults={saveResults}
+            analysisResults={analysisResults}
             handlePrevStep={handlePrevStep}
             images={images}
+            loading={loading}
           />
         );
       case 3:

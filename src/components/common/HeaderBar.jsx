@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Pane, Heading, Button } from 'evergreen-ui';
+import { Home } from '@mui/icons-material';
 import PropTypes from 'prop-types';
 
 const HeaderBar = ({ title, buttonPosition = 'right' }) => {
@@ -8,6 +9,7 @@ const HeaderBar = ({ title, buttonPosition = 'right' }) => {
   const buttonElement = (
     <Button
       onClick={() => navigate('/')}
+      iconAfter={<Home fontSize="small" />}
       intent="success"
       position="absolute"
       top={16}

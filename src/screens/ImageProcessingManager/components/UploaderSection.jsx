@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pane, Button, Image } from 'evergreen-ui';
+import { ArrowForward } from '@mui/icons-material';
 import { ImageUploader } from '../../../components';
 import PropTypes from 'prop-types';
 
@@ -26,6 +27,7 @@ const UploaderSection = ({
         appearance="primary"
         onClick={confirmImagesUpload}
         disabled={images.length === 0}
+        iconAfter={<ArrowForward fontSize="small" />}
       >
         Continuar
       </Button>

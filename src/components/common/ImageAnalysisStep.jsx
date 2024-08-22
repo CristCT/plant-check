@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pane, Button, Heading, Paragraph } from 'evergreen-ui';
+import { ArrowBack, PlayArrow } from '@mui/icons-material';
 import PropTypes from 'prop-types';
 
 const ImageAnalysisStep = ({ handleNextStep, handlePrevStep, images }) => (
@@ -16,13 +17,18 @@ const ImageAnalysisStep = ({ handleNextStep, handlePrevStep, images }) => (
       )}
     </Paragraph>
     <Pane display="flex" justifyContent="space-between" marginTop={24}>
-      <Button appearance="default" onClick={handlePrevStep}>
+      <Button
+        appearance="minimal"
+        onClick={handlePrevStep}
+        iconBefore={<ArrowBack fontSize="small" />}
+      >
         Volver
       </Button>
       <Button
         appearance="primary"
         onClick={handleNextStep}
         disabled={images.length === 0}
+        iconAfter={<PlayArrow fontSize="small" />}
       >
         Iniciar Análisis
       </Button>

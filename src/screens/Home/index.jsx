@@ -1,5 +1,6 @@
 import React from 'react';
-import { Pane, Card, Heading, Text, Icon } from 'evergreen-ui';
+import { Pane, Card, Heading, Text } from 'evergreen-ui';
+import { LocalFlorist, CameraAlt, Dashboard } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
@@ -18,7 +19,7 @@ const Home = () => {
 
   const iconStyle = {
     marginBottom: 16,
-    size: 40,
+    fontSize: 40,
   };
 
   return (
@@ -48,7 +49,7 @@ const Home = () => {
           onClick={() => navigate('/analyzer')}
           hoverBackground="#E4E7EB"
         >
-          <Icon icon="plant" {...iconStyle} color="#47B881" />
+          <LocalFlorist style={iconStyle} color="primary" />
           <Heading size={600} marginBottom={8}>
             Analizador de Plantas
           </Heading>
@@ -63,7 +64,7 @@ const Home = () => {
           onClick={() => navigate('/image-processing-manager')}
           hoverBackground="#E4E7EB"
         >
-          <Icon icon="camera" {...iconStyle} color="#1070CA" />
+          <CameraAlt style={iconStyle} color="secondary" />
           <Heading size={600} marginBottom={8}>
             Procesamiento de Imágenes
           </Heading>
@@ -78,7 +79,7 @@ const Home = () => {
           onClick={() => navigate('/dashboard')}
           hoverBackground="#E4E7EB"
         >
-          <Icon icon="chart" {...iconStyle} color="#EC4C47" />
+          <Dashboard style={iconStyle} color="error" />
           <Heading size={600} marginBottom={8}>
             Dashboard
           </Heading>

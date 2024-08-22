@@ -1,8 +1,15 @@
 import React from 'react';
 import { Pane, Button, Heading, Paragraph } from 'evergreen-ui';
+import { ArrowBack, Save } from '@mui/icons-material';
 import PropTypes from 'prop-types';
 
-const SaveResultsStep = ({ saveResults, handlePrevStep, images }) => (
+const SaveResultsStep = ({
+  saveResults,
+  analysisResults,
+  handlePrevStep,
+  images,
+  loading,
+}) => (
   <Pane>
     <Heading size={500} marginY={10}>
       Finalizar y Guardar Resultados
@@ -15,16 +22,17 @@ const SaveResultsStep = ({ saveResults, handlePrevStep, images }) => (
       <Button
         appearance="minimal"
         onClick={handlePrevStep}
-        iconBefore="arrow-left"
+        iconBefore={<ArrowBack fontSize="small" />}
       >
         Volver al análisis
       </Button>
       <Button
         appearance="primary"
         intent="success"
-        onClick={saveResults}
-        disabled={images.length === 0}
-        iconAfter="floppy-disk"
+        onClick={() => saveResults(analysisResults)}
+        disabled={images.length === 0 || analysisResults.length === 0}
+        iconAfter={<Save fontSize="small" />}
+        isLoading={loading}
       >
         Guardar Resultados
       </Button>
@@ -34,8 +42,10 @@ const SaveResultsStep = ({ saveResults, handlePrevStep, images }) => (
 
 SaveResultsStep.propTypes = {
   saveResults: PropTypes.func.isRequired,
+  analysisResults: PropTypes.array.isRequired,
   handlePrevStep: PropTypes.func.isRequired,
   images: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default SaveResultsStep;
