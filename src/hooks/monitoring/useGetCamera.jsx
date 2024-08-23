@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { getCameraData } from '../../Api/MonitoringApi';
+import { getCameraData } from '../../api/MonitoringApi';
 
 const useGetCamera = () => {
   const [camera, setCamera] = useState(null);

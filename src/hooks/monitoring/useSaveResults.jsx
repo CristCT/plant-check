@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { toast } from 'react-toastify';
-import { saveResults } from '../../Api/MonitoringApi';
+import { saveResults } from '../../api/MonitoringApi';
 
 const useSaveResults = () => {
   const [loading, setLoading] = useState(false);

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { postDataProcessing } from '../Api/MonitoringApi';
+import { postDataProcessing } from '../api/MonitoringApi';
 
 export const useImageAnalyzer = () => {
   const [image, setImage] = useState(null);

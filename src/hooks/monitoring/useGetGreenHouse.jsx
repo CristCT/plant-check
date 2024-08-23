@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { getGreenHouseData } from '../../Api/MonitoringApi';
+import { getGreenHouseData } from '../../api/MonitoringApi';
 
 const useGetGreenHouse = () => {
   const [greenHouse, setGreenHouse] = useState(null);

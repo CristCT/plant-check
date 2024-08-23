@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { getDataMonitoring } from '../../Api/MonitoringApi';
+import { getDataMonitoring } from '../../api/MonitoringApi';
 
 const useGetMonitoring = () => {
   const [monitoring, setMonitoring] = useState([]);
