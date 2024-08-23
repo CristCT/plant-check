@@ -31,7 +31,7 @@ const Analyzer = () => {
       background="tint1"
       height="100vh"
     >
-      <HeaderBar title="Analizador de Plantas" />
+      <HeaderBar title="Analizador de Imagen" />
 
       <Pane
         width={500}

@@ -51,7 +51,7 @@ const Home = () => {
         >
           <LocalFlorist style={iconStyle} color="primary" />
           <Heading size={600} marginBottom={8}>
-            Analizador de Plantas
+            Analizador de Imagen
           </Heading>
           <Text>Analice el estado de sus plantas</Text>
         </Card>
