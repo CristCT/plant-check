@@ -7,7 +7,7 @@ const options = [
   { id: 'problemas', name: 'Ver posibles problemas' },
 ];
 
-const OptionList = ({ selectedOption, onChange }) => {
+const OptionList = ({ selectedOption, onChange, options }) => {
   return (
     <Combobox
       items={options}
@@ -23,6 +23,11 @@ const OptionList = ({ selectedOption, onChange }) => {
 OptionList.propTypes = {
   selectedOption: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  options: PropTypes.array,
+};
+
+OptionList.defaultProps = {
+  options,
 };
 
 export default OptionList;
