@@ -24,7 +24,7 @@ export const useImageAnalyzer = () => {
     }
   };
 
-  const analyzeImage = async (outputType) => {
+  const analyzeImage = async (outputType, selectedModelChange) => {
     if (!imageFile) {
       toast.error('Por favor, suba una imagen primero.');
       return;
@@ -37,6 +37,7 @@ export const useImageAnalyzer = () => {
     const formData = new FormData();
     formData.append('file', imageFile);
     formData.append('output_type', outputType);
+    formData.append('model_trade_off', selectedModelChange);
 
     try {
       const data = await postDataProcessing(formData);

@@ -1,4 +1,4 @@
 import { formatTime } from './dateUtils';
-import { optionsDefaultPredict } from './optionsUtils';
+import { optionsDefaultPredict, optionsModels } from './optionsUtils';
 
-export { formatTime, optionsDefaultPredict };
+export { formatTime, optionsDefaultPredict, optionsModels };

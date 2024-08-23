@@ -1,17 +1,15 @@
-import { useState } from 'react';
 import { Pane } from 'evergreen-ui';
 import { useImageAnalyzer } from '../../hooks/useImageAnalyzer';
+import { useModelOptions } from '../../provider/ModelOptionsProvider';
 import {
   HeaderBar,
   ImageUploader,
   ImageAnalyzer,
   ResultDisplay,
-  OptionList,
 } from '../../components';
-import { optionsDefaultPredict } from '../../utils';
 
 const Analyzer = () => {
-  const [selectedOption, setSelectedOption] = useState('saludable');
+  const { selectedModelOptions, selectedModelChange } = useModelOptions();
   const {
     image,
     handleImageUpload,
@@ -45,15 +43,11 @@ const Analyzer = () => {
         textAlign="center"
         background="white"
       >
-        <OptionList
-          selectedOption={selectedOption}
-          onChange={setSelectedOption}
-          options={optionsDefaultPredict}
-        />
-
         <ImageUploader onUpload={handleImageUpload} />
         <ImageAnalyzer
-          onAnalyze={() => analyzeImage(selectedOption)}
+          onAnalyze={() =>
+            analyzeImage(selectedModelOptions, selectedModelChange)
+          }
           disabled={!image}
         />
         <ResultDisplay

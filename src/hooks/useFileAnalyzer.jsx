@@ -3,10 +3,9 @@ import { postDataProcessing } from '../api/MonitoringApi';
 import { toast } from 'react-toastify';
 
 const useFileAnalyzer = () => {
-  const [outputType] = useState('saludable');
   const [loading, setLoading] = useState(false);
 
-  const analyzeImage = async (imageFile) => {
+  const analyzeImage = async (imageFile, outputType, selectedModelChange) => {
     if (!imageFile) {
       toast.error('Por favor, sube una imagen primero.');
       return false;
@@ -17,6 +16,7 @@ const useFileAnalyzer = () => {
     const formData = new FormData();
     formData.append('file', imageFile);
     formData.append('output_type', outputType);
+    formData.append('model_trade_off', selectedModelChange);
 
     try {
       const data = await postDataProcessing(formData);

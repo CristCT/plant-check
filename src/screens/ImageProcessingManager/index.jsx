@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Pane } from 'evergreen-ui';
 import { toast } from 'react-toastify';
+import { useModelOptions } from '../../provider/ModelOptionsProvider';
 import useFileAnalyzer from '../../hooks/useFileAnalyzer';
 import useSaveResults from '../../hooks/monitoring/useSaveResults';
 import {
@@ -14,6 +15,7 @@ import {
 import UploaderSection from './components/UploaderSection';
 
 const ImageProcessingManager = () => {
+  const { selectedModelOptions, selectedModelChange } = useModelOptions();
   const [currentStep, setCurrentStep] = useState(0);
   const [images, setImages] = useState([]);
   const [analysisResults, setAnalysisResults] = useState([]);
@@ -52,7 +54,11 @@ const ImageProcessingManager = () => {
 
     for (let i = 0; i < totalImages; i++) {
       try {
-        const analysisResult = await analyzeImage(images[i]);
+        const analysisResult = await analyzeImage(
+          images[i],
+          selectedModelOptions,
+          selectedModelChange
+        );
         if (analysisResult) {
           analysisResults.push({
             idcamara: 1,

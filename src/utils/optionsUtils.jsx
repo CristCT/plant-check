@@ -3,4 +3,9 @@ const optionsDefaultPredict = [
   { id: 'problemas', name: 'Ver posibles problemas' },
 ];
 
-export { optionsDefaultPredict };
+const optionsModels = [
+  { id: true, name: 'Solo manzanas' },
+  { id: false, name: 'Todas las plantas' },
+];
+
+export { optionsDefaultPredict, optionsModels };

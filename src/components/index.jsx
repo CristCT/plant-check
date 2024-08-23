@@ -10,6 +10,7 @@ import FinalStep from './common/FinalStep';
 import ImageProcessingDialog from './common/ImageProcessingDialog';
 import LoadingSpinner from './common/LoadingSpinner';
 import ErrorAlert from './common/ErrorAlert';
+import SettingsModal from './common/SettingsModal';
 
 export {
   HeaderBar,
@@ -24,4 +25,5 @@ export {
   ImageProcessingDialog,
   LoadingSpinner,
   ErrorAlert,
+  SettingsModal,
 };

@@ -47,7 +47,7 @@ const Dashboard = () => {
 
   return (
     <Pane background="tint1" minHeight="100vh">
-      <HeaderBar title="Dashboard" />
+      <HeaderBar title="Dashboard" showOptions={false} />
       <Pane paddingX={16}>
         {isLoading && <LoadingSpinner />}
 
