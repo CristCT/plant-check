@@ -8,6 +8,7 @@ import {
   ResultDisplay,
   OptionList,
 } from '../../components';
+import { optionsDefaultPredict } from '../../utils';
 
 const Analyzer = () => {
   const [selectedOption, setSelectedOption] = useState('saludable');
@@ -47,6 +48,7 @@ const Analyzer = () => {
         <OptionList
           selectedOption={selectedOption}
           onChange={setSelectedOption}
+          options={optionsDefaultPredict}
         />
 
         <ImageUploader onUpload={handleImageUpload} />
