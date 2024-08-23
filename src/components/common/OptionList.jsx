@@ -2,11 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Combobox } from 'evergreen-ui';
 
-const options = [
-  { id: 'saludable', name: '¿La hoja está saludable?' },
-  { id: 'problemas', name: 'Ver posibles problemas' },
-];
-
 const OptionList = ({ selectedOption, onChange, options }) => {
   return (
     <Combobox
@@ -23,11 +18,7 @@ const OptionList = ({ selectedOption, onChange, options }) => {
 OptionList.propTypes = {
   selectedOption: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  options: PropTypes.array,
-};
-
-OptionList.defaultProps = {
-  options,
+  options: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default OptionList;
