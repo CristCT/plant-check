@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { postDataProcessing } from '../api/MonitoringApi';
+import { toast } from 'react-toastify';
 
 export const useImageAnalyzer = () => {
   const [image, setImage] = useState(null);
@@ -25,7 +26,7 @@ export const useImageAnalyzer = () => {
 
   const analyzeImage = async (outputType) => {
     if (!imageFile) {
-      alert('Por favor, sube una imagen primero.');
+      toast.error('Por favor, suba una imagen primero.');
       return;
     }
 
